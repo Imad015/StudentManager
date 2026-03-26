@@ -66,13 +66,19 @@ void _addStudent(List<Studentmanager> Students) {
     print("Please enter the grade");
     return;
   }
-  Students.add(
-    Studentmanager(
-      fullName: fullNameStudent!,
-      numberStudent: numberStudent,
-      grade: grade,
-    ),
-  );
+  if (grade >= 0 && grade <= 20) {
+    Students.add(
+      Studentmanager(
+        fullName: fullNameStudent!,
+        numberStudent: numberStudent,
+        grade: grade,
+      ),
+    );
+    print("Add Succeess");
+  } else {
+    print("Add failed!");
+    print("please enter grade between (0-20)");
+  }
 }
 
 void _showListStudent(List<Studentmanager> Students) {
@@ -87,7 +93,7 @@ void _showListStudent(List<Studentmanager> Students) {
   }
 }
 
-// =====ADD GREADE===========
+// =====Change GREADE===========
 void _changeGrade(List<Studentmanager> Students) {
   stdout.write("enter number student: ");
   String? inputNumberStudent = stdin.readLineSync();
@@ -101,14 +107,17 @@ void _changeGrade(List<Studentmanager> Students) {
         print("enter new Grade: ");
         String? inputNewGrade = stdin.readLineSync();
         double? newGrade = double.tryParse(inputNewGrade ?? "");
-        if (newGrade != null && newGrade >= 0) {
+        if (newGrade != null && newGrade >= 0 && newGrade <= 20) {
           student.grade = newGrade;
+        } else {
+          print("Change failed!");
         }
       }
     }
   }
 }
 
+//======REMOVE========
 void _removeStudent(List<Studentmanager> Students) {
   if (Students.isEmpty) {
     print("List is empty");
