@@ -99,7 +99,6 @@ void _changeGrade(List<Studentmanager> Students) {
   String? inputNumberStudent = stdin.readLineSync();
   int? numberGrade = int.tryParse(inputNumberStudent ?? "");
   if (numberGrade != null && numberGrade >= 0) {
-    // ignore: unused_local_variable
     bool found = false;
     for (var student in Students) {
       if (numberGrade == student.numberStudent) {
@@ -114,6 +113,8 @@ void _changeGrade(List<Studentmanager> Students) {
         }
       }
     }
+    if (!found) print("Student not found!");
+
   }
 }
 
