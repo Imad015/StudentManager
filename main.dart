@@ -107,6 +107,13 @@ void _showListStudent(List<StudentManager> students) {
 
 // =====Change GREADE===========
 void _changeGrade(List<StudentManager> students) {
+  if(students.isEmpty){
+    print("""\n
+-----------------------------------
+           List is empty!
+-----------------------------------""");
+    return;
+  }
   stdout.write("enter number student: ");
   String? inputNumberStudent = stdin.readLineSync();
   int? numberGrade = int.tryParse(inputNumberStudent ?? "");
@@ -132,7 +139,10 @@ void _changeGrade(List<StudentManager> students) {
 //======REMOVE========
 void _removeStudent(List<StudentManager> students) {
   if (students.isEmpty) {
-    print("List is empty");
+    print("""\n
+-----------------------------------
+           List is empty!
+-----------------------------------""");
     return;
   }
 
