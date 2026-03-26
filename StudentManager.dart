@@ -1,8 +1,8 @@
-class Studentmanager {
+class StudentManager {
   String fullName;
   int numberStudent;
   double grade;
-  Studentmanager({
+  StudentManager({
     required this.fullName,
     required this.numberStudent,
     required this.grade,

@@ -2,7 +2,7 @@ import 'StudentManager.dart';
 import 'dart:io';
 
 void main() {
-  List<Studentmanager> Students = [];
+  List<StudentManager> students = [];
   print("Hello in Student Manager");
 
   while (true) {
@@ -13,16 +13,15 @@ void main() {
       enter 0 to exit""");
     String? inputUser = stdin.readLineSync();
     if (inputUser == '1') {
-      _addStudent(Students);
-      print("Enter successfully");
+      _addStudent(students);
     } else if (inputUser == '2') {
-      _showListStudent(Students);
+      _showListStudent(students);
     } else if (inputUser == '3') {
-      _changeGrade(Students);
+      _changeGrade(students);
     } else if (inputUser == '0') {
       break;
     } else if (inputUser == '4') {
-      _removeStudent(Students);
+      _removeStudent(students);
     } else {
       print("Please enter number True!");
     }
@@ -30,13 +29,14 @@ void main() {
 }
 
 //===== ADD STUDENT=============
-void _addStudent(List<Studentmanager> Students) {
+void _addStudent(List<StudentManager> students) {
   stdout.write("enter full name to Student: ");
   String? fullNameStudent = stdin.readLineSync();
   if (fullNameStudent != null && fullNameStudent.isNotEmpty) {
     print("Entering Succeess");
   } else {
     print("Please enter the name student true");
+    return;
   }
   stdout.write("enter to number Student: ");
   //Enter number
@@ -67,9 +67,9 @@ void _addStudent(List<Studentmanager> Students) {
     return;
   }
   if (grade >= 0 && grade <= 20) {
-    Students.add(
-      Studentmanager(
-        fullName: fullNameStudent!,
+    students.add(
+      StudentManager(
+        fullName: fullNameStudent,
         numberStudent: numberStudent,
         grade: grade,
       ),
@@ -81,26 +81,26 @@ void _addStudent(List<Studentmanager> Students) {
   }
 }
 
-void _showListStudent(List<Studentmanager> Students) {
-  if (Students.isEmpty) {
+void _showListStudent(List<StudentManager> students) {
+  if (students.isEmpty) {
     print("List is empty");
     return;
   }
-  for (int i = 0; i < Students.length; i++) {
+  for (int i = 0; i < students.length; i++) {
     print(
-      "Student number:${Students[i].numberStudent},Fullname:${Students[i].fullName},Grade:${Students[i].grade}",
+      "Student number:${students[i].numberStudent},Fullname:${students[i].fullName},Grade:${students[i].grade}",
     );
   }
 }
 
 // =====Change GREADE===========
-void _changeGrade(List<Studentmanager> Students) {
+void _changeGrade(List<StudentManager> students) {
   stdout.write("enter number student: ");
   String? inputNumberStudent = stdin.readLineSync();
   int? numberGrade = int.tryParse(inputNumberStudent ?? "");
   if (numberGrade != null && numberGrade >= 0) {
     bool found = false;
-    for (var student in Students) {
+    for (var student in students) {
       if (numberGrade == student.numberStudent) {
         found = true;
         print("enter new Grade: ");
@@ -114,13 +114,12 @@ void _changeGrade(List<Studentmanager> Students) {
       }
     }
     if (!found) print("Student not found!");
-
   }
 }
 
 //======REMOVE========
-void _removeStudent(List<Studentmanager> Students) {
-  if (Students.isEmpty) {
+void _removeStudent(List<StudentManager> students) {
+  if (students.isEmpty) {
     print("List is empty");
     return;
   }
@@ -129,9 +128,9 @@ void _removeStudent(List<Studentmanager> Students) {
   String? inputStudentToRemove = stdin.readLineSync();
   final numberStudentToRemove = int.tryParse(inputStudentToRemove ?? "");
   if (numberStudentToRemove != null && numberStudentToRemove >= 0) {
-    final before = Students.length;
-    Students.removeWhere((s) => s.numberStudent == numberStudentToRemove);
-    if (Students.length == before) {
+    final before = students.length;
+    students.removeWhere((s) => s.numberStudent == numberStudentToRemove);
+    if (students.length == before) {
       print("not found!");
     } else {
       print("Remove complete");
