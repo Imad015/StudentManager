@@ -6,11 +6,17 @@ void main() {
   print("Hello in Student Manager");
 
   while (true) {
-    print("""\nEnter number 1 to add new student,
-      \n enter 2 to show list students,
-      \n enter 3 to change grade\n
-      \n enter 4 to remove student\n
-      enter 0 to exit""");
+    print("""\n
+-----------------------------------
+      Student Manager Menu
+-----------------------------------
+[1] Add new student
+[2] Show list of students
+[3] Change grade
+[4] Remove student
+[0] Exit
+-----------------------------------
+Enter your choice:""");
     String? inputUser = stdin.readLineSync();
     if (inputUser == '1') {
       _addStudent(students);
@@ -83,14 +89,20 @@ void _addStudent(List<StudentManager> students) {
 
 void _showListStudent(List<StudentManager> students) {
   if (students.isEmpty) {
-    print("List is empty");
+    print("""\n
+-----------------------------------
+           List is empty!
+-----------------------------------""");
     return;
   }
+  print("""
+-----------------------------------
+           Students List
+-----------------------------------""");
   for (int i = 0; i < students.length; i++) {
-    print(
-      "Student number:${students[i].numberStudent},Fullname:${students[i].fullName},Grade:${students[i].grade}",
-    );
+    print("ID: ${students[i].numberStudent} | Name: ${students[i].fullName} | Grade: ${students[i].grade}");
   }
+  print("-----------------------------------");
 }
 
 // =====Change GREADE===========
