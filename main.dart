@@ -8,7 +8,7 @@ void main() {
   while (true) {
     print("""\nEnter number 1 to add new student,
       \n enter 2 to show list students,
-      \n enter 3 to add grade\n
+      \n enter 3 to change grade\n
       \n enter 4 to remove student\n
       enter 0 to exit""");
     String? inputUser = stdin.readLineSync();
@@ -82,7 +82,7 @@ void _showListStudent(List<Studentmanager> Students) {
   }
   for (int i = 0; i < Students.length; i++) {
     print(
-      "Student number ${Students[i].numberStudent},Fullname:${Students[i].fullName},Grade:${Students[i].grade}",
+      "Student number:${Students[i].numberStudent},Fullname:${Students[i].fullName},Grade:${Students[i].grade}",
     );
   }
 }
