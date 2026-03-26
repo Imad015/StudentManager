@@ -93,17 +93,17 @@ void _changeGrade(List<Studentmanager> Students) {
   String? inputNumberStudent = stdin.readLineSync();
   int? numberGrade = int.tryParse(inputNumberStudent ?? "");
   if (numberGrade != null && numberGrade >= 0) {
-    for (var i = 0; i < Students.length; i++) {
-      if (numberGrade == Students[i].numberStudent) {
+    // ignore: unused_local_variable
+    bool found = false;
+    for (var student in Students) {
+      if (numberGrade == student.numberStudent) {
+        found = true;
         print("enter new Grade: ");
         String? inputNewGrade = stdin.readLineSync();
         double? newGrade = double.tryParse(inputNewGrade ?? "");
-        if(newGrade!=null&&newGrade>=0){
-          Students[i].grade = newGrade;
+        if (newGrade != null && newGrade >= 0) {
+          student.grade = newGrade;
         }
-        
-      } else {
-        print("the number not found!");
       }
     }
   }
@@ -119,13 +119,12 @@ void _removeStudent(List<Studentmanager> Students) {
   String? inputStudentToRemove = stdin.readLineSync();
   final numberStudentToRemove = int.tryParse(inputStudentToRemove ?? "");
   if (numberStudentToRemove != null && numberStudentToRemove >= 0) {
-    for (var i = 0; i < Students.length; i++) {
-      if (numberStudentToRemove == Students[i].numberStudent) {
-        Students.remove(Students[i]);
-        print("Remove complite");
-      } else {
-        print("The number Not Find");
-      }
+    final before = Students.length;
+    Students.removeWhere((s) => s.numberStudent == numberStudentToRemove);
+    if (Students.length == before) {
+      print("not found!");
+    } else {
+      print("Remove complete");
     }
   }
 }
